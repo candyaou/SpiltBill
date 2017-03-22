@@ -36,6 +36,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -166,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int listSize = cardList.size();
                 double totalPrice = 0;
+                ArrayList<String> sumUp = new ArrayList<String>();
 
                 for (int i = 0; i<listSize; i++){
                     String amoungStr = cardList.get(i).getDetails();
@@ -180,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 //                Toast.makeText(MainActivity.this,"Total :"+totalPrice,Toast.LENGTH_SHORT).show();
+                sumUp.add("Total Member "+map.size());
                 Log.i("Set ", "Total Member "+map.size());
                 for(Map.Entry<String, List<Integer>> entry: map.entrySet()) {
 //                    Log.i("Set", entry.getKey() + " = " + entry.getValue());
@@ -192,17 +195,47 @@ public class MainActivity extends AppCompatActivity {
 //                    Log.i("Set ", entry.getKey()+" pay "+sum+" Transaction : "+entry.getValue());
                     result.put(entry.getKey(),sum);
                 }
+                sumUp.add("TotalPrice "+totalPrice);
                 Log.i("Set ", "TotalPrice "+totalPrice);
+
                 double dividePrice = totalPrice/map.size();
+
+                sumUp.add(dividePrice+" Per Each");
                 Log.i("Set ", dividePrice+" Per Each");
 
                 for(Map.Entry m:result.entrySet()){
 //                    System.out.println(m.getKey()+" "+m.getValue());
                     double v = (Double) m.getValue();
+                    sumUp.add(m.getKey()+" pay "+v);
                     Log.i("Set ", m.getKey()+" pay "+v);
+
+                    sumUp.add("So, "+m.getKey()+" have to pay "+(v - dividePrice));
                     Log.i("Set ", "So, "+m.getKey()+" have to pay "+(v - dividePrice));
                 }
 
+                String sumUpResult = "";
+                for (String num : sumUp) {
+                    sumUpResult = sumUpResult + num + "\n";
+                }
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                alertDialogBuilder
+                        .setMessage(sumUpResult)
+                        .setCancelable(false)
+                        .setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                // show it
+                alertDialog.show();
+
+//                Toast.makeText(MainActivity.this,""+sumUp,Toast.LENGTH_SHORT).show();
+                sumUp.clear();
                 map.clear();
                 result.clear();
             }
