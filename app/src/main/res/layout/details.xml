@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:weightSum="5">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/photoImageViewDetail"
+        android:layout_width="200dp"
+        android:layout_margin="5dp"
+        android:layout_weight="2"
+        android:layout_gravity="center"
+        android:layout_height="100dp"
+        android:src="@drawable/account"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:text="Title"
+            android:id="@+id/titleDetail"
+            android:textColor="#000"
+            android:layout_gravity="center_horizontal"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:text="Detail"
+            android:textSize="18dp"
+            android:id="@+id/detailDetail"
+            android:layout_below="@id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:text="Username"
+            android:id="@+id/usernameDetail"
+            android:layout_below="@id/detailDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:text="Time"
+            android:id="@+id/timeDetail"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_weight="1"
+        android:id="@+id/dismissDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dismiss"
+        android:background="@color/colorPrimaryDark"/>
+
+</LinearLayout>
